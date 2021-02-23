@@ -10,3 +10,4 @@
 8.  pdfplumber :  tool that can extract text from a PDF
 9.  pdf2json : A python package that converts pdfdocs into json format
 10. pdfquery : designed to reliably extract data from sets of PDFs with as little code as possible
+11. BeautifulSoup: to scrape PDF files
