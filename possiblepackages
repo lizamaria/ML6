@@ -4,7 +4,7 @@
 3.  PDFMiner> https://github.com/pdfminer/pdfminer.six
 4.  Reportlab> http://vermeulen.ca/python-pdf.html
 5.  RE : regular expression
-6.  pypdf4
+6.  pypdf4 : https://github.com/claird/PyPDF4 (splitting,cropping, etc..)
 7.  textract
 8.  pdfplumber :  tool that can extract text from a PDF
 9.  pdf2json : A python package that converts pdfdocs into json format
