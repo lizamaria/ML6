@@ -4,3 +4,5 @@
 2. REST API with Python> https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-receipts.md 
 3. PDFMiner> http://www.unixuser.org/~euske/python/pdfminer/index.html
 4. Reportlab> http://vermeulen.ca/python-pdf.html
+pypdf4
+textract
