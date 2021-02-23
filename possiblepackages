@@ -1,5 +1,5 @@
 
-1.Tabula :will return a spreadsheet file which you probably need to post-process manually.
-2. Convert pdf in csv file? later use like data set :)
-package3:
+1. Tabula :will return a spreadsheet file which you probably need to post-process manually.
+2. Convert pdf in csv file. Later use like data set.
+3. REST API with Python: https://github.com/Azure-Samples/cognitive-services-quickstart-code/blob/master/python/FormRecognizer/rest/python-receipts.md
 packege4:
