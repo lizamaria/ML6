@@ -8,5 +8,5 @@
 6.  pypdf4
 7.  textract
 8.  pdfplumber
-9.  pdf2json
+9.  pdf2json : A python package that converts pdfdocs into json format
 10. pdfquery
