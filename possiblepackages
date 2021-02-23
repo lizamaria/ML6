@@ -1,8 +1,7 @@
 
 1.  Tabula :will return a spreadsheet file which you probably need to post-process manually.
  .  Convert pdf in csv file...
-2.  PyMuPDF 
-3.  PDFMiner https://github.com/pdfminer/pdfminer.six
+3.  PDFMiner> https://github.com/pdfminer/pdfminer.six
 4.  Reportlab> http://vermeulen.ca/python-pdf.html
 5.  RE : regular expression
 6.  pypdf4 : https://github.com/claird/PyPDF4 (splitting,cropping, etc..)
@@ -11,3 +10,11 @@
 9.  pdf2json : A python package that converts pdfdocs into json format
 10. pdfquery : designed to reliably extract data from sets of PDFs with as little code as possible
 11. BeautifulSoup: to scrape PDF files
+
+12. PyMuPDF: https://github.com/pymupdf/PyMuPDF
+    decrypt the document
+    access meta information, links and bookmarks
+    render pages in raster formats (PNG and some others), or the vector format SVG
+    search for text
+    extract text and images
+    convert to other formats: PDF, (X)HTML, XML, JSON, text
