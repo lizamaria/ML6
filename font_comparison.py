@@ -2,61 +2,17 @@
 # coding: utf-8
 
 import pandas as pd
-import PyPDF2
-
-
-
-#declare the path of your file
-file_path = "./data/10N_Sodium_Hydroxide_NaOH_40_6_US_EN_sds.pdf"  #/pdf_file/data.pdf
-#Convert your file
-df = tabula.read_pdf(file_path, pages=1)
-
-
-
-# In[171]:
-
-
 from __future__ import print_function
 import fitz
 import sys
+from operator import itemgetter
 
-
+#declare the path of your file
+# function that returns doc
+file_path = "./data/10N_Sodium_Hydroxide_NaOH_40_6_US_EN_sds.pdf"  #/pdf_file/data.pdf
 doc = fitz.open(file_path)
 
-
-# In[174]:
-
-
-for page in doc:
-    blocks = page.getText("blocks")
-    print(blocks)
-    break
-
-
-# In[178]:
-
-
-# for page in doc:
-#     json_content = page.getText("json")
-#     print(json_content)
-
-
-# In[180]:
-
-
-for page in doc:
-    html_content = page.getText("html")
-    print(html_content)
-    break
-
-
-# ### Filter the main headers (16)
-
-# In[185]:
-
-
-from operator import itemgetter
-def new_fonts(doc, granularity=False):
+def get_font_style_counts(doc, granularity=False):
     """Extracts fonts and their usage in PDF documents.
     :param doc: PDF document to iterate through
     :type doc: <class 'fitz.fitz.Document'>
@@ -90,29 +46,7 @@ def new_fonts(doc, granularity=False):
 
     return font_counts, styles
 
-
-# In[186]:
-
-
-font_counts, styles = new_fonts(doc, granularity=True)
-
-
-# In[187]:
-
-
-font_counts
-
-
-# In[188]:
-
-
-styles
-
-
-# In[190]:
-
-
-def new_font_tags(font_counts, styles):
+def get_font_tags(font_counts, styles):
     """Returns dictionary with font sizes as keys and tags as value.
     :param font_counts: (font_size, count) for all fonts occuring in document
     :type font_counts: list
@@ -148,18 +82,7 @@ def new_font_tags(font_counts, styles):
     return style_tag
 
 
-# In[191]:
-
-
-style_tag = new_font_tags(font_counts, styles)
-style_tag
-
-# In[193]:
-
-
-import pprint
-pp = pprint.PrettyPrinter(indent=4)
-def new_headers_para(doc, style_tag):
+def assign_tags_to_content(doc, style_tag):
     """Scrapes headers & paragraphs from PDF and return texts with element tags.
     :param doc: PDF document to iterate through
     :type doc: <class 'fitz.fitz.Document'>
@@ -221,21 +144,7 @@ def new_headers_para(doc, style_tag):
                 header_para.append(block_string)
     return header_para
 
-
-# In[194]:
-
-
-new_headers_para(doc, style_tag)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
+font_counts, styles = get_font_style_counts(doc, granularity=True)
+style_tag = get_font_tags(font_counts, styles)
+assign_tags_to_content(doc, style_tag)
 
