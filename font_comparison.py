@@ -1,58 +1,22 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import pandas as pd
 import PyPDF2
-
-
-
-#declare the path of your file
-file_path = "./data/10N_Sodium_Hydroxide_NaOH_40_6_US_EN_sds.pdf"  #/pdf_file/data.pdf
-#Convert your file
-df = tabula.read_pdf(file_path, pages=1)
-
-
-
-# In[171]:
-
-
 from __future__ import print_function
 import fitz
 import sys
 
 
-doc = fitz.open(file_path)
-
-
-# In[174]:
-
-
-for page in doc:
-    blocks = page.getText("blocks")
-    print(blocks)
-    break
-
-
-# In[178]:
-
-
-# for page in doc:
-#     json_content = page.getText("json")
-#     print(json_content)
-
-
-# In[180]:
-
-
-for page in doc:
-    html_content = page.getText("html")
-    print(html_content)
-    break
+def parse_to_html(pdf):
+    """
+    Parses pdf file to html object
+    Use filepath of pdf as argument
+    """
+    doc = fitz.open(pdf)
+    for page in doc:
+        html_content = page.getText("html")
+    return html_content
 
 
 # ### Filter the main headers (16)
-
-# In[185]:
 
 
 from operator import itemgetter
@@ -91,25 +55,11 @@ def new_fonts(doc, granularity=False):
     return font_counts, styles
 
 
-# In[186]:
-
-
 font_counts, styles = new_fonts(doc, granularity=True)
-
-
-# In[187]:
-
 
 font_counts
 
-
-# In[188]:
-
-
 styles
-
-
-# In[190]:
 
 
 def new_font_tags(font_counts, styles):
@@ -148,14 +98,8 @@ def new_font_tags(font_counts, styles):
     return style_tag
 
 
-# In[191]:
-
-
 style_tag = new_font_tags(font_counts, styles)
 style_tag
-
-# In[193]:
-
 
 import pprint
 pp = pprint.PrettyPrinter(indent=4)
@@ -220,22 +164,3 @@ def new_headers_para(doc, style_tag):
 
                 header_para.append(block_string)
     return header_para
-
-
-# In[194]:
-
-
-new_headers_para(doc, style_tag)
-
-
-# In[ ]:
-
-
-
-
-
-# In[ ]:
-
-
-
-
