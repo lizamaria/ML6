@@ -4,22 +4,12 @@
 import pandas as pd
 import PyPDF2
 
-
-
 #declare the path of your file
 file_path = "./data/10N_Sodium_Hydroxide_NaOH_40_6_US_EN_sds.pdf"  #/pdf_file/data.pdf
-#Convert your file
-df = tabula.read_pdf(file_path, pages=1)
-
-
-
-# In[171]:
-
 
 from __future__ import print_function
 import fitz
 import sys
-
 
 doc = fitz.open(file_path)
 

@@ -1,6 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
 import pandas as pd
 from __future__ import print_function
 import fitz
@@ -11,6 +8,16 @@ from operator import itemgetter
 # function that returns doc
 file_path = "./data/10N_Sodium_Hydroxide_NaOH_40_6_US_EN_sds.pdf"  #/pdf_file/data.pdf
 doc = fitz.open(file_path)
+
+def parse_to_html(pdf):
+    """
+    Parses pdf file to html object
+    Use filepath of pdf as argument
+    """
+    doc = fitz.open(pdf)
+    for page in doc:
+        html_content = page.getText("html")
+    return html_content
 
 def get_font_style_counts(doc, granularity=False):
     """Extracts fonts and their usage in PDF documents.
