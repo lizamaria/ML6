@@ -4,7 +4,8 @@
 # the key's that can be extracted from the provided pdf files
 
 # This is a work in progress
-# Todo: ted dicts
+# Todo: investigate option of homemade object
+# Todo: find way to automate for more than 3 levels
 
 
 def create_skeleton_dict(headers :list, keyvals :dict):
