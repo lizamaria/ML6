@@ -4,7 +4,20 @@
 # the key's that can be extracted from the provided pdf files
 
 # This is a work in progress
-# Todo: list top levels
-# Todo: nest subdictionaries
+# Todo: ted dicts
 
-pdf_information = {'Identification': None}
+
+def create_skeleton_dict(headers :list, keyvals :dict):
+    """Makes nested dict based on list and dict or list
+    *currently only supports one level down of nesting*
+
+    Parameters: a list and a dict, where the list is top level
+    headers and the subsequent dict consists of keys and values
+    of the to be nested dict
+
+    Returns: a nested dictionary where respective 'keyvals' are
+    nested in respective 'headers' based on order in the list
+    and dictionary provided as parameters
+    """
+    skeleton_dict = dict(zip(headers, keyvals))
+    return skeleton_dict
