@@ -35,5 +35,6 @@ if __name__ == "__main__":
                    {"key3.1": "val3.1", "key3.2": "val3.2", "key3.3": "val3.3"}]
     print(create_skeleton_dict(header_list, keyval_list))
     print(type(create_skeleton_dict(header_list, keyval_list)))
-    print(json.dumps(create_skeleton_dict(header_list, keyval_list), indent=2))
-    print(type(json.dumps(create_skeleton_dict(header_list, keyval_list))))
+    data = create_skeleton_dict(header_list, keyval_list)
+    with open("data.json", "w") as write_file:
+        json.dump(data, write_file, indent=4)
