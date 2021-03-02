@@ -20,6 +20,7 @@ def create_skeleton_dict(headers: list, keyvals: list):
     and dictionary provided as parameters
     """
     skeleton_dict = dict(zip(headers, keyvals))
+    skeleton_dict = skeleton_dict.items()
     return skeleton_dict
 
 
@@ -28,5 +29,6 @@ if __name__ == "__main__":
     keyval_list = [{"key1": "val1", "key2": "val2", "key3": "val3"},
                    {"key1": "val1", "key2": "val2", "key3": "val3"},
                    {"key1": "val1", "key2": "val2", "key3": "val3"}]
-    print(create_skeleton_dict(header_list,  keyval_list))
+    print(create_skeleton_dict(header_list, keyval_list))
+    print(create_skeleton_dict(header_list, keyval_list))
     print(type(create_skeleton_dict(header_list, keyval_list)))
