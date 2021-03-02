@@ -7,8 +7,8 @@
 # This is a work in progress
 # Currently tested for list of headers and list of key-value dicts
 # that correspond by order in the respective lists
-# Todo: find way to extend a level of the tree (currently checking conversion dict -> list of dicts approach)
-# Todo: find a way to directly assign existing and new keys (and values) to a nested dict
+# Todo: find way to build an extra level on the tree
+# Todo: (alternate route) find a way to directly assign existing and new keys (and values) to a nested dict
 
 
 def create_skeleton_dict(headers: list, keyvals: list):
