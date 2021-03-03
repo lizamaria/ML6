@@ -17,5 +17,5 @@
 # wrapper functions
 
 # testing grounds
-if __name__ == __main__:
+if __name__ == "__main__":
     print("What's up doc?")
