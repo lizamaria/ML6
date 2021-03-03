@@ -18,9 +18,9 @@ def get_pdf_text(path):
     all text in the pdf along with font, paragraph, newline,...
     information
     """
-    with open(path, 'rb'):
-        pdfReader = PyPDF2.PdfFileReader(pyfile)
+    with open(path, 'rb') as pdf:
+        pdf_reader = PyPDF2.PdfFileReader(pdf)
         for page in range(11):
-            pageObj = pdfReader.getPage(page)
-            pdf_text = pageObj.extractText()
+            page_object = pdf_reader.getPage(page)
+            pdf_text = page_object.extractText()
         return pdf_text
