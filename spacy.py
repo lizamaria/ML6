@@ -63,11 +63,8 @@ class Resume(object):
 
 
 resume = Resume(filename="580076.pdf")
-response_text = resume.get()
+response_news = resume.get()
 
-response_text
-
-
-helper = EntityGenerator(text = response_text)
+helper = EntityGenerator(text=response_text)
 response = helper.get()
 print(json.dumps(response, indent=3))
