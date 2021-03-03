@@ -22,7 +22,6 @@
     - Other Info...
   - How to dentify the keys and the values
   -  Extract info in form key/value from the pdf: identify the 
-  -  
   - How are we gonna preprocess?
   - 
 - NLP 
