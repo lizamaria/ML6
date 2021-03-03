@@ -17,8 +17,6 @@ def create_skeleton_dict(headers, keyvals):
     Returns: a nested dictionary where respective 'keyvals' are
     nested in respective 'headers' based on order in the list
     and dictionary provided as parameters
-
-    Requirements: import json
     """
     data = dict(zip(headers, keyvals))
     with open("data.json", "w") as write_file:
