@@ -6,7 +6,7 @@
 
 import json
 
-def create_json(headers, keyvals):
+def create_skeleton_dict(headers, keyvals):
     """Makes nested dict based on list and dict or list
     *currently only supports one level down of nesting*
 
@@ -19,7 +19,6 @@ def create_json(headers, keyvals):
     and dictionary provided as parameters
     """
     data = dict(zip(headers, keyvals))
-    data = json.dumps(data, indent=4)
     with open("data.json", "w") as write_file:
         json.dump(data, write_file, indent=4)
     return data
@@ -31,6 +30,6 @@ if __name__ == "__main__":
                    {"key2.1": "val2.1", "key2.2": "val2.2", "key2.3": "val2.3"},
                    {"key3.1": "val3.1", "key3.2": "val3.2", "key3.3": "val3.3"},
                    "value4"]
-    dict_demo = create_json(header_list, keyval_list)
+    dict_demo = create_skeleton_dict(header_list, keyval_list)
     print(dict_demo)
     print(type(dict_demo)) # Have a look at the json file in the folder of this script also
