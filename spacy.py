@@ -1,3 +1,10 @@
+#import json
+#import pickle
+import random
+
+#spacy.prefer_gpu()
+#nlp = spacy.load("en_core_web_sm")
+
 try:
     import spacy
     import json
@@ -63,8 +70,42 @@ class Resume(object):
 
 
 resume = Resume(filename="580076.pdf")
-response_news = resume.get()
+response_text = resume.get()
 
-helper = EntityGenerator(text=response_text)
+response_text
+
+
+helper = EntityGenerator(text = response_text)
 response = helper.get()
 print(json.dumps(response, indent=3))
+
+latin_letters = {}
+
+
+def is_latin(uchr):
+    try:
+        return latin_letters[uchr]
+    except KeyError:
+        try:
+            return latin_letters.setdefault(
+                uchr, 'LATIN' in ud.name(uchr))
+        except:
+            print(uchr)
+            raise Exception()
+
+
+def only_roman_chars(unistr):
+    return all(is_latin(uchr) for uchr in unistr if uchr.isalpha())
+
+
+data = ResumeParser("580076.pdf").get_extracted_data()
+
+ners = ['PERSON', 'NORP', 'FAC', 'ORG', 'GPE', 'LOC', 'PRODUCT', 'EVENT', 'WORK_OF_ART', 'LAW', 'LANGUAGE', 'DATE',
+        'TIME', 'PERCENT', 'MONEY', 'QUANTITY', 'ORDINAL', 'CARDINAL']
+
+# The ners we are most interested in
+# ners_small = ['PERSON', 'EVENT', 'PERCENT']
+
+nlp = spacy.load("en_core_web_sm")
+
+data['ner'] = data['Description'].apply(lambda desc: dict(Counter([ent.label_ for ent in nlp(desc).ents])))
