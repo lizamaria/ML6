@@ -11,6 +11,7 @@
 import re
 from operator import itemgetter
 import fitz
+import pprint
 
 
 # Standard variables
@@ -18,8 +19,8 @@ standard_headers = [
     r"(\d+.*identification)",
     r"(\d+.*hazard)",
     r"(\d+.*composition)",
-    r"(\d+.*first.aid)",
-    r"(\d+.*fire.fighting)",
+    r"(\d+.*first.aid)|(\d+.*firstaid)",
+    r"(\d+.*fire.fighting)|(\d+.*firefighting)",
     r"(\d+.*accidental release)",
     r"(\d+.*handling)",
     r"(\d+.*exposure)",
@@ -214,10 +215,25 @@ def filter_headers(header_list, standard_headers):
             output_list.remove(h)
     return output_list
 
+
+def get_dict_header_and_content(scores, filtered_headers, tagged_text):
+    section_header_tag = sorted(scores.items(), key=itemgetter(1), reverse=True)[0][0]
+    dict_section = {}
+
+    for i in range(len(filtered_headers)):
+        header_pos_current = tagged_text.index(f'{section_header_tag}{filtered_headers[i]}')
+        if i < len(filtered_headers) - 1:
+            header_pos_next = tagged_text.index(f'{section_header_tag}{filtered_headers[i + 1]}')
+            content = tagged_text[header_pos_current + 1:header_pos_next]
+        else:
+            content = tagged_text[header_pos_current + 1:]
+        dict_section[filtered_headers[i]] = content
+    return dict_section
+
 # wrapper functions
 
 
-def extract_headers(file_path):
+def extract_headers_and_sections(file_path):
     with fitz.open(file_path) as doc:
         font_counts, styles = get_font_style_counts(doc, granularity=True)
         style_tag = get_font_tags(font_counts, styles)
@@ -226,11 +242,17 @@ def extract_headers(file_path):
         scores = score_candidate_tags(candidate_tags, header_dict, standard_headers)
         section_header_list = get_section_header_list(scores, header_dict)
         headers = filter_headers(section_header_list, standard_headers)
-        return headers
+        dict_section = get_dict_header_and_content(scores, headers, tagged_text)
+        return headers, dict_section
+
 
 # testing grounds
 
 
 if __name__ == "__main__":
-    extracted_headers = extract_headers("data/PHTHALIC-ANHYDRIDE--ACS-5KG-pdf.pdf")
-    print(extracted_headers)
+    pp = pprint.PrettyPrinter(indent=2)
+    extracted_headers, dict_section = extract_headers_and_sections("../data/PHTHALIC-ANHYDRIDE--ACS-5KG-pdf.pdf")
+    pp.pprint("Extracted headers: ")
+    pp.pprint(extracted_headers)
+    pp.pprint("Extracted sections: ")
+    pp.pprint(dict_section)
