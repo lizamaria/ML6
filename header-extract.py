@@ -5,6 +5,7 @@
 # This is a work in progress
 # todo: write docstring
 # todo: clean up PEP8 violations
+# todo: inspect local variable s_key in line 179 (pycharm warning)
 
 # packages used in this file
 import re
