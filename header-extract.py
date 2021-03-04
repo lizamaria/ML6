@@ -3,9 +3,8 @@
 # as a list of headers
 
 # This is a work in progress
-# todo: fix two reference issues (s_key and 'open' in 'init') (see pycharm problems tab)
-# todo: test functionality
 # todo: write docstring
+# todo: clean up PEP8 violations
 
 # packages used in this file
 import re
@@ -232,5 +231,5 @@ def extract_headers(file_path):
 
 
 if __name__ == "__main__":
-    extract_headers("data/PHTHALIC-ANHYDRIDE--ACS-5KG-pdf.pdf")
-    print("You did it!")
+    extracted_headers = extract_headers("data/PHTHALIC-ANHYDRIDE--ACS-5KG-pdf.pdf")
+    print(extracted_headers)
