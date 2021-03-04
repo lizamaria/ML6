@@ -53,6 +53,7 @@ def get_font_style_counts(doc, granularity=False):
 
     return font_counts, styles
 
+
 def get_font_tags(font_counts, styles):
     """Returns dictionary with font sizes as keys and tags as value.
     :param font_counts: (font_size, count) for all fonts occuring in document
@@ -87,7 +88,6 @@ def get_font_tags(font_counts, styles):
         else:
             style_tag[style] = '<h{0}>'.format(idx)
     return style_tag
-
 
 def assign_tags_to_content(doc, style_tag):
     """Scrapes headers & paragraphs from PDF and return texts with element tags.
@@ -151,6 +151,7 @@ def assign_tags_to_content(doc, style_tag):
                 header_para.append(block_string)
     return header_para
 
+    
 font_counts, styles = get_font_style_counts(doc, granularity=True)
 style_tag = get_font_tags(font_counts, styles)
 assign_tags_to_content(doc, style_tag)
