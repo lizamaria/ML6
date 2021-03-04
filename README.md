@@ -1,3 +1,5 @@
+# Project-PDF-to-JSON
+
 # ML6 Use case (using neural language processing to classify words)
 - Transfrorm pdf to json.
   - How to extract info in form key/value from the pdf: identify the key and value, after review in that values wich are the new keys and new values.
